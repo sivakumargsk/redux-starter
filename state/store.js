@@ -1,10 +1,10 @@
-import Redux from 'redux';
-import { todoReducer, visibilityFilterReducer} from './reducers.js';
+import { createStore, combineReducers } from 'redux';
+import { todos, visibilityFilter } from './reducers.js';
 
-const reducers = Redux.combineReducers({
-  visibilityFilter: visibilityFilterReducer,
-  todos: todoReducer
+const reducers = combineReducers({
+   todos: todos,
+   visibilityFilter: visibilityFilter
 });
-const store = Redux.createStore(reducers);
+const store = createStore(reducers);
 
 export default store;
