@@ -7,9 +7,13 @@ const TodoFotter = React.createClass ({
   render: function () {
     return (
       <div>
-        <ItemsLeft />
-        <VisibilityFilters />
-        <ClearCompleted />
+        <ItemsLeft todos={this.props.todos} />
+        <VisibilityFilters
+          showAll={this.props.showAll}
+          showCompleted={this.props.showCompleted}
+          showActive={this.props.showActive}
+        />
+        <ClearCompleted clearCompleted={this.props.clearCompleted}/>
       </div>
     );
   }
