@@ -1,12 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
 import store from './state/store.js';
 import TodoManager from './components/todoManager.js';
 
-ReactDOM.render(
+render(
   <Provider store={store}>
-   <TodoManager />
-  </Provider>,
+    <TodoManager />
+</Provider>,
   document.getElementById('content'));
