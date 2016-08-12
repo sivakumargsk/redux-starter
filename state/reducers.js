@@ -6,38 +6,38 @@ var data = [
   {taskId: 3, taskName: 'learning React', completed: false}
 ]
 
-export const todoReducer = function (state = {tasks: data, nextId: 4}, action) {
+export const todos = function (state = {todoTasks: data, nextId: 4}, action) {
   switch (action.type) {
   case 'ADD_TODO':
-     var newTodos = state.tasks.concat(
+     var newTodos = state.todoTasks.concat(
        [{taskId: state.nextId,
          taskName: action.taskName,
-         completed: true}];
+         completed: false}]);
      var newNextId = state.nextId + 1;
-     return {tasks: newTodos, nextId: newNextId};
+     return {todoTasks: newTodos, nextId: newNextId};
 
   case 'TOGGLE_TODO':
-    var toggleTodo = state.tasks.map(function (i) {
+    var toggleTodo = state.todoTasks.map(function (i) {
       if (i.taskId == action.taskId) {
         return Object.assign({}, i, {completed: !i.completed });
       }else{
         return i;
       }});
-    return {tasks: toggleTodo, nextId: state.nextId };
+    return {todoTasks: toggleTodo, nextId: state.nextId };
 
   case 'REMOVE_TODO':
-    var remainingTodos = state.tasks.filter( function (i) {
+    var remainingTodos = state.todoTasks.filter( function (i) {
       if (i.taskId != action.taskId){
         return i;
       }});
-    return { tasks: remainingTodos, nextId: state.nextId });
+    return { todoTasks: remainingTodos, nextId: state.nextId };
 
   case 'CLEAR_COMPLETED':
-    var remainingTodos = state.tasks.filter( function (i) {
+    var remainingTodos = state.todoTasks.filter( function (i) {
       if (i.completed == false){
         return i;
       }});
-    return { tasks: remainingTodos, nextId: state.nextId});
+    return { todoTasks: remainingTodos, nextId: state.nextId};
 
   default:
     return state
@@ -45,7 +45,7 @@ export const todoReducer = function (state = {tasks: data, nextId: 4}, action) {
 }
 
 // visibilityFilter reducer
-export const visibilityFilterReducer = function (state = 'SHOW_ALL', action){
+export const visibilityFilter = function (state = 'SHOW_ALL', action){
   switch (action.type) {
     case 'SET_VISIBILITY_FILTER':
       return action.filter;
